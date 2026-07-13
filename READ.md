@@ -30,6 +30,9 @@ docker mysql
 flyway db migration tool - version control of migrations
     all changes to schemas, tables etc. requires resources/db.migration sql files
     it is executed during app startup
+device-service
+    1 user can have multiple devices - 1 device can have only one user
+
 
 Annotations to remember ##################################
 @AfterReturning -> aop
@@ -43,6 +46,8 @@ Annotations to remember ##################################
 @Data -> lombok for getters and setters builder pattern
 @DeleteMapping
 @Entity
+@Enumerated -> in case of Enum usage by db entity
+    @Enumerated(EnumType.STRING)  
 @GeneratedValue(strategy= GenerationType.IDENTITY)
 @GetMapping
 @Id -> entity id
