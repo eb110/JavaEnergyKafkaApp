@@ -32,9 +32,14 @@ flyway db migration tool - version control of migrations
     it is executed during app startup
 
 Annotations to remember ##################################
+@AfterReturning -> aop
 @AllArgsConstructor -> lombok
+@Aspect -> aop -> allows to create a functionality that reflects to a group of methods
+    for example -> to all service methods -> check pointcut, before, afterReturning
+@Before -> aop
 @Builder -> lombok for getters and setters
 @Column -> name in brackets points to the schema column name
+@Component
 @Data -> lombok for getters and setters builder pattern
 @DeleteMapping
 @Entity
@@ -43,6 +48,8 @@ Annotations to remember ##################################
 @Id -> entity id
 @NoArgsConstructor -> lombok
 @PathVariable -> client simple parameter
+@Pointcut -> aop -> information to apply -> for example to all service method
+    @Pointcut("execution(* figura.user_service.service.*.*(..))")
 @PostMapping
 @PutMapping
 @Repository -> jpa
