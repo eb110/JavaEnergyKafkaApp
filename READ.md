@@ -32,11 +32,23 @@ flyway db migration tool - version control of migrations
     it is executed during app startup
 
 Annotations to remember ##################################
+@AllArgsConstructor -> lombok
 @Builder -> lombok for getters and setters
+@Column -> name in brackets points to the schema column name
 @Data -> lombok for getters and setters builder pattern
+@DeleteMapping
+@Entity
+@GeneratedValue(strategy= GenerationType.IDENTITY)
+@GetMapping
+@Id -> entity id
+@NoArgsConstructor -> lombok
+@PathVariable -> client simple parameter
 @PostMapping
+@PutMapping
+@Repository -> jpa
 @RequestBody -> if expecting model from the client
 @RequestMapping -> custom address "/api/blablabla"
 @RestController
 @Service
 @Slf4j -> lombok logger "log.info()..."
+@Table -> schema table
