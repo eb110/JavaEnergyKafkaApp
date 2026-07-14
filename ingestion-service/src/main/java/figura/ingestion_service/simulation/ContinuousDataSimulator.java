@@ -35,7 +35,7 @@ public class ContinuousDataSimulator implements CommandLineRunner {
 
     }
 
-    @Scheduled(fixedRateString = "${simulation.interval-ms}")
+    //@Scheduled(fixedRateString = "${simulation.interval-ms}")
     public void sendMockData() {
         log.info("\nENERGY USAGES FOR KAFKA Simulation started\n");
         for(int i = 0; i < requestPerInterval; i++) {

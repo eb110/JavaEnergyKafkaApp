@@ -75,6 +75,7 @@ Annotations to remember ##################################
 @Pointcut -> aop -> information to apply -> for example to all service method
     @Pointcut("execution(* figura.user_service.service.*.*(..))")
 @PostMapping
+@PreDestroy -> for example - shutdown of threads
 @PutMapping
 @Repository -> jpa
 @RequestBody -> if expecting model from the client
