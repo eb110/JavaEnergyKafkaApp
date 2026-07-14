@@ -8,6 +8,7 @@ docker-compose
 docker-mysql
 docker-kafka
 docker-kafkaUi
+docker-influxdb
 
 Docker up
 ```
@@ -41,6 +42,8 @@ ingestion-service
     ingestion service will handle the data (TB per day) and post it to db
 kafka docker
 kafka ui docker
+usage-service
+docker influx-db
 
 
 Annotations to remember ##################################
