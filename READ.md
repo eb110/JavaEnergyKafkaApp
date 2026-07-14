@@ -44,6 +44,8 @@ kafka docker
 kafka ui docker
 usage-service
 docker influx-db
+ingestion - kafka
+kafka - usage - influx db
 
 
 Annotations to remember ##################################
@@ -51,12 +53,18 @@ Annotations to remember ##################################
 @AllArgsConstructor -> lombok
 @Aspect -> aop -> allows to create a functionality that reflects to a group of methods
     for example -> to all service methods -> check pointcut, before, afterReturning
-@Autowired ->
-    test to call repository
+@Autowired -> to utilise the @component, repository
+    not required if only one param is injected via constructor
+@Bean -> part of the @Configuration
 @Before -> aop
 @Builder -> lombok for getters and setters
 @Column -> name in brackets points to the schema column name
-@Component
+@Component -> in a java class is to tell to spring: 
+    Register me automatically at the startup in your context 
+    so any other class could use me using dependency injection: @Autowire
+@Configuration -> and @Bean are used to add manually a java class to the spring context 
+    at the startup. Commonly @Bean is used when you can't annotate a class with some annotation. 
+    Sample: Libraries not compatible with spring, old libraries or just any class that requires more than a simple instantiation.
 @ControllerAdvice -> this mapping checks if a class that handles exceptions (global exception handler)
     knows how to handle controller thrown exceptions
 @Data -> lombok for getters and setters builder pattern

@@ -25,7 +25,7 @@ public class IngestionService {
             .build();
 
         // Send to Kafka Topic
-        kafkaTemplate.send("energyUsage", event);
+        kafkaTemplate.send("energy-usage", event);
         log.info("Ingested Energy Usage Event: {}", event);
     }
 
