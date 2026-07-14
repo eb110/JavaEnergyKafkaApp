@@ -25,29 +25,18 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id){
         UserDto userDto = userService.getUserById(id);
-        if(userDto == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody UserDto userDto){
-        try{
-            userService.updateUser(id, userDto);
-            return ResponseEntity.ok("User  updated successfully");
-        } catch (IllegalArgumentException e){
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<UserDto> updateUser(@PathVariable Long id, @RequestBody UserDto userDto){
+            UserDto updatedUser = userService.updateUser(id, userDto);
+            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id){
-        try {
             userService.deleteUser(id);
             return ResponseEntity.noContent().build();
-        } catch (IllegalArgumentException e){
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-        }
     }
 }

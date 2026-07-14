@@ -36,12 +36,8 @@ public class DeviceController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteDevice(@PathVariable Long id){
-        try {
             deviceService.deleteDevice(id);
             return ResponseEntity.noContent().build();
-        } catch (IllegalArgumentException e){
-            return new ResponseEntity<>("Device not found", HttpStatus.NOT_FOUND);
-        }
     }
 
 }

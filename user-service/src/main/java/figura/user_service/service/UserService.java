@@ -2,11 +2,10 @@ package figura.user_service.service;
 
 import figura.user_service.dto.UserDto;
 import figura.user_service.entity.User;
+import figura.user_service.exception.UserNotFoundException;
 import figura.user_service.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -35,12 +34,13 @@ public class UserService {
 
     public UserDto getUserById(Long id) {
         return userRepository.findById(id)
-            .map(this::toDto).orElse(null);
+            .map(this::toDto).orElseThrow(() ->
+                new UserNotFoundException("User not found with id " + id));
     }
 
-    public void updateUser(Long id, UserDto userDto) {
+    public UserDto updateUser(Long id, UserDto userDto) {
         User user = userRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("User not found"));
+            .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         user.setName(userDto.getName());
         user.setSurname(userDto.getSurname());
@@ -49,12 +49,14 @@ public class UserService {
         user.setAlerting(userDto.isAlerting());
         user.setEnergyAlertingThreshold(userDto.getEnergyAlertingThreshold());
 
-        userRepository.save(user);
+        final User updatedUser = userRepository.save(user);
+
+        return toDto(updatedUser);
     }
 
     public void deleteUser(Long id) {
         User user = userRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("User not found"));
+            .orElseThrow(() -> new UserNotFoundException("User not found"));
         userRepository.delete(user);
     }
 

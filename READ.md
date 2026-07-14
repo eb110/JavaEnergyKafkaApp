@@ -43,11 +43,14 @@ Annotations to remember ##################################
 @Builder -> lombok for getters and setters
 @Column -> name in brackets points to the schema column name
 @Component
+@ControllerAdvice -> this mapping checks if a class that handles exceptions (global exception handler)
+    knows how to handle controller thrown exceptions
 @Data -> lombok for getters and setters builder pattern
 @DeleteMapping
 @Entity
 @Enumerated -> in case of Enum usage by db entity
     @Enumerated(EnumType.STRING)  
+@ExceptionHandler -> utilised by global exception class
 @GeneratedValue(strategy= GenerationType.IDENTITY)
 @GetMapping
 @Id -> entity id
