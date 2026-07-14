@@ -6,6 +6,8 @@ compose mysql
 DOCKER ###########################################
 docker-compose
 docker-mysql
+docker-kafka
+docker-kafkaUi
 
 Docker up
 ```
@@ -34,6 +36,11 @@ device-service
     1 user can have multiple devices - 1 device can have only one user
 global exception
 aol for logging and time measurement
+ingestion-service
+    all devices will be sending data (electrical information, power consumption etc)
+    ingestion service will handle the data (TB per day) and post it to db
+kafka docker
+kafka ui docker
 
 
 Annotations to remember ##################################
@@ -52,6 +59,7 @@ Annotations to remember ##################################
 @Data -> lombok for getters and setters builder pattern
 @DeleteMapping
 @Disabled -> to disable unit test, for example finished seed or just broken test
+@EnableScheduling -> required by scheduler, place in start application class
 @Entity
 @Enumerated -> in case of Enum usage by db entity
     @Enumerated(EnumType.STRING)  
@@ -59,7 +67,10 @@ Annotations to remember ##################################
 @GeneratedValue(strategy= GenerationType.IDENTITY)
 @GetMapping
 @Id -> entity id
+@JsonFormat -> useful for type serialization
+    @JsonFormat(shape =  JsonFormat.Shape.STRING)
 @NoArgsConstructor -> lombok
+@Override -> inheritance for example new version of abstract function
 @PathVariable -> client simple parameter
 @Pointcut -> aop -> information to apply -> for example to all service method
     @Pointcut("execution(* figura.user_service.service.*.*(..))")
@@ -68,14 +79,20 @@ Annotations to remember ##################################
 @Repository -> jpa
 @RequestBody -> if expecting model from the client
 @RequestMapping -> custom address "/api/blablabla"
+@ResponseStatus -> this automatically sends back the status
+    we don't have to return it
 @RestController
+@Scheduled -> scheduler to run functionality, requires enabling
+    go to @EnableScheduling
+    - for example method @Scheduled(fixedRate = 5000) run every 5s
 @Service
 @Slf4j -> lombok logger "log.info()..."
 @SpringBootApplication -> always in the startup class
 @SpringBootTest
 @Table -> schema table
 @Test
-
+@Value -> property from configuration
+    @Value("${simulation.request-per-interval")
 
 shortcuts#########################
 ctrl shift t -> go to test

@@ -1,24 +1,13 @@
 package figura.user_service.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class UserDto {
-
-    private Long id;
-    private String name;
-    private String surname;
-    private String email;
-    private String address;
-    private boolean alerting;
+public record UserDto (
+    Long id,
+    String name,
+    String surname,
+    String email,
+    String address,
+    boolean alerting,
     //if alerting is on - we need the energy consumption threshold
-    private double energyAlertingThreshold;
-
+    double energyAlertingThreshold
     //email, alerting and threshold are combined for the alerting process
-}
+){}

@@ -19,10 +19,10 @@ public class DeviceService {
 
     public DeviceDto createDevice(DeviceDto input){
         final Device createdDevice = Device.builder()
-            .name(input.getName())
-            .type(input.getType())
-            .location(input.getLocation())
-            .user_id(input.getUserId())
+            .name(input.name())
+            .type(input.type())
+            .location(input.location())
+            .user_id(input.userId())
             .build();
 
         final Device device = deviceRepository.save(createdDevice);
@@ -34,10 +34,10 @@ public class DeviceService {
         Device device = deviceRepository.findById(id).orElseThrow(
             () -> new DeviceNotFoundException("No device found with id " + id));
 
-        device.setName(input.getName());
-        device.setType(input.getType());
-        device.setLocation(input.getLocation());
-        device.setUser_id(input.getUserId());
+        device.setName(input.name());
+        device.setType(input.type());
+        device.setLocation(input.location());
+        device.setUser_id(input.userId());
 
         final Device updatedDevice = deviceRepository.save(device);
 
@@ -58,12 +58,11 @@ public class DeviceService {
     }
 
     private DeviceDto toDto(Device device) {
-        return DeviceDto.builder()
-            .id(device.getId())
-            .name(device.getName())
-            .type(device.getType())
-            .location(device.getLocation())
-            .userId(device.getUser_id())
-            .build();
+        return new DeviceDto(
+            device.getId(),
+            device.getName(),
+            device.getType(),
+            device.getLocation(),
+            device.getUser_id());
     }
 }
