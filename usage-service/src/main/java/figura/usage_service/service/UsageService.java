@@ -1,6 +1,6 @@
 package figura.usage_service.service;
 
-import kafka.event.EnergyUsageEvent;
+import figura.kafka.event.EnergyUsageEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
