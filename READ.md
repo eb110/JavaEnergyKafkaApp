@@ -29,9 +29,11 @@ user-service
 docker mysql
 flyway db migration tool - version control of migrations
     all changes to schemas, tables etc. requires resources/db.migration sql files
-    it is executed during app startup
+    it is executed during user-device app startup but handles all servcies!
 device-service
     1 user can have multiple devices - 1 device can have only one user
+global exception
+aol for logging and time measurement
 
 
 Annotations to remember ##################################
@@ -39,6 +41,8 @@ Annotations to remember ##################################
 @AllArgsConstructor -> lombok
 @Aspect -> aop -> allows to create a functionality that reflects to a group of methods
     for example -> to all service methods -> check pointcut, before, afterReturning
+@Autowired ->
+    test to call repository
 @Before -> aop
 @Builder -> lombok for getters and setters
 @Column -> name in brackets points to the schema column name
@@ -47,6 +51,7 @@ Annotations to remember ##################################
     knows how to handle controller thrown exceptions
 @Data -> lombok for getters and setters builder pattern
 @DeleteMapping
+@Disabled -> to disable unit test, for example finished seed or just broken test
 @Entity
 @Enumerated -> in case of Enum usage by db entity
     @Enumerated(EnumType.STRING)  
@@ -66,4 +71,13 @@ Annotations to remember ##################################
 @RestController
 @Service
 @Slf4j -> lombok logger "log.info()..."
+@SpringBootApplication -> always in the startup class
+@SpringBootTest
 @Table -> schema table
+@Test
+
+
+shortcuts#########################
+ctrl shift t -> go to test
+ctrl / -> comment uncomment
+alt f12 -> terminal
